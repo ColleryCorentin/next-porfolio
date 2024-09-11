@@ -14,11 +14,13 @@ module.exports = {
         'soft-red': '#f39a9f',
         'soft-orange': '#f8ac83',
         'soft-purple': '#bdb6cb',
+        'soft-grey': '#18181b',
       },
       gradientColorStops: theme => ({
         'soft-red': '#f39a9f',
         'soft-orange': '#f8ac83',
         'soft-purple': '#bdb6cb',
+        'soft-grey': '#18181b',
       }),
     },
   },

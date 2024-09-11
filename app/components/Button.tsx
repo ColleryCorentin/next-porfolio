@@ -1,10 +1,15 @@
 import React from 'react';
 
-const Button = ({ label, onClick } : never) => {
+interface ButtonProps {
+    label: JSX.Element;
+    onClick: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({label, onClick}) => {
     return (
         <button
             onClick={onClick}
-            className="px-4 py-2 border text-white rounded-full hover:text-soft-orange hover:border-soft-orange transition-all duration-300">
+            className="flex items-center px-4 py-2 text-white rounded-full bg-soft-grey hover:text-soft-orange transition-all duration-300">
             {label}
         </button>
     );
