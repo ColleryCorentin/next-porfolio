@@ -205,12 +205,12 @@ export default ProjectSection;
 "use client";
 
 import React, { useState } from 'react';
+
 import {
-    FaGithub, FaCss3, FaHtml5, FaReact, FaNodeJs, FaDocker, FaPython, FaTrello,
+    FaGithub, FaCss3, FaHtml5, FaReact, FaNodeJs, FaDocker, FaPython, FaTrello, FaPhp,
 } from 'react-icons/fa';
 import { SiJavascript, SiTypescript, SiMongodb, SiPostgresql } from 'react-icons/si';
 
-// Données statiques
 const about = {
     title: "About me",
     description: "Tout savoir sur moi : ",
@@ -244,17 +244,80 @@ const skills = {
 const projects = [
     {
         id: 1,
-        title: "Projet React",
-        description: "Application web avec React",
+        title: "Tweet-Academy",
+        description: "Le but de ce projet est de créer un réseau social qui aura les mêmes fonctionnalités que twitter. Il devra être le plus ressemblant possible en terme de fonctionnalités par rapport au site “Twitter”.",
         icons: [
-            <FaReact key="1" className="text-blue-500 text-3xl" />,
+            <FaPhp key="1" className="text-blue-500 text-3xl" />,
             <FaHtml5 key="2" className="text-orange-500 text-3xl" />,
-            <FaGithub key="3" className="text-3xl" />,
+            <FaCss3 key="3" className="text-blue-500 text-3xl" />,
+        ],
+
+        link: `https://github.com/ColleryCorentin/Tweet_Academy`,
+    },
+    {
+        id: 2,
+        title: "Projet PHP",
+        description: "Application web avec Php",
+        icons: [
+            <FaPhp key="1" className="text-blue-500 text-3xl" />,
+            <FaHtml5 key="2" className="text-orange-500 text-3xl" />,
+        ],
+    },
+    {
+        id: 3,
+        title: "Projet PHP",
+        description: "Application web avec Php",
+        icons: [
+            <FaPhp key="1" className="text-blue-500 text-3xl" />,
+            <FaHtml5 key="2" className="text-orange-500 text-3xl" />,
+        ],
+    },
+    {
+        id: 4,
+        title: "Projet PHP",
+        description: "Application web avec Php",
+        icons: [
+            <FaPhp key="1" className="text-blue-500 text-3xl" />,
+            <FaHtml5 key="2" className="text-orange-500 text-3xl" />,
+        ],
+    },
+    {
+        id: 5,
+        title: "Projet PHP",
+        description: "Application web avec Php",
+        icons: [
+            <FaPhp key="1" className="text-blue-500 text-3xl" />,
+            <FaHtml5 key="2" className="text-orange-500 text-3xl" />,
+        ],
+    },
+    {
+        id: 6,
+        title: "Projet PHP",
+        description: "Application web avec Php",
+        icons: [
+            <FaPhp key="1" className="text-blue-500 text-3xl" />,
+            <FaHtml5 key="2" className="text-orange-500 text-3xl" />,
+        ],
+    },
+    {
+        id: 7,
+        title: "Projet PHP",
+        description: "Application web avec Php",
+        icons: [
+            <FaPhp key="1" className="text-blue-500 text-3xl" />,
+            <FaHtml5 key="2" className="text-orange-500 text-3xl" />,
         ],
     },
 
 ];
 
+const handleRedirect = (url?: string) => {
+    if (url) {
+        window.location.href = url;
+    } else {
+        console.error('URL is undefined');
+    }
+};
 interface SidebarProps {
     setSection: (section: SectionType) => void;
 }
@@ -263,29 +326,26 @@ type SectionType = 'projects' | 'skills' | 'about';
 
 const Sidebar: React.FC<SidebarProps> = ({ setSection }) => {
     return (
-        <div className="md:w-1/4 w-full flex-col items-start space-y-4 content-center">
+        <div className="sm:w-1/2 md:w-full flex-col items-start space-y-4 content-center">
             <h1 className="text-3xl font-bold mb-4">Pourquoi Moi ?</h1>
             <p className="mt-3">
                 Développeur web avec 3 ans d’expérience et étudiant à Epitech Lille, je suis passionné par les technologies modernes et motivé pour apporter des solutions innovantes en alternance. Mon objectif est d’appliquer mes compétences techniques et d’apprendre davantage dans un environnement stimulant.
             </p>
 
-            <div className="w-full flex flex-col space-y-4">
+            <div className="w-full flex flex-col w-full lg:w-1/2 space-y-4">
                 <button
-                    className="text-xl font-bold bg-soft-grey text-white px-5 py-3 rounded-lg hover:text-soft-orange transition-colors duration-300"
-                    onClick={() => setSection('about')}
-                >
+                    className="text-xl  font-bold bg-soft-grey text-white px-5 py-3 rounded-lg hover:text-soft-orange transition-colors duration-300"
+                    onClick={() => setSection('about')}>
                     A propos de moi
                 </button>
                 <button
                     className="text-xl font-bold bg-soft-grey px-5 py-3 rounded-lg hover:text-soft-orange transition-colors duration-300"
-                    onClick={() => setSection('projects')}
-                >
+                    onClick={() => setSection('projects')}>
                     Projets
                 </button>
                 <button
-                    className="text-xl font-bold bg-soft-grey px-5 py-3 rounded-lg hover:text-soft-orange transition-colors duration-300"
-                    onClick={() => setSection('skills')}
-                >
+                    className="text-xl  font-bold bg-soft-grey px-5 py-3 rounded-lg hover:text-soft-orange transition-colors duration-300"
+                    onClick={() => setSection('skills')}>
                     Skills
                 </button>
             </div>
@@ -312,8 +372,7 @@ const SkillsSection = () => (
         {skills.skillList.map((skill, index) => (
             <li key={index} className="justify-center flex relative group">
                 <div
-                    className="flex items-center justify-center h-32 w-32 p-4 bg-soft-grey rounded-lg text-6xl text-white-500 group-hover:text-soft-orange transition-opacity duration-300"
-                >
+                    className="flex items-center justify-center h-32 w-32 p-4 bg-soft-grey rounded-lg text-6xl text-white-500 group-hover:text-soft-orange transition-opacity duration-300">
                     {skill.icon}
                 </div>
                 <span
@@ -326,18 +385,23 @@ const SkillsSection = () => (
     </ul>
 );
 
-const ProjectsSection = () => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.map((project) => (
-            <div key={project.id} className="border rounded-lg p-4 shadow-lg flex flex-col items-center">
-                <div className="mb-4 flex space-x-2">{project.icons}</div>
-                <p className="text-lg font-bold">{project.title}</p>
-                <p>{project.description}</p>
-            </div>
-        ))}
-    </div>
-);
-
+const ProjectsSection = () => {
+    return (
+        <div className="grid grid-cols-1 gap-4 overflow-y-auto h-96 scrollbar scrollbar-thumb-soft-orange scrollbar-track-transparent">
+            {projects.map((project) => (
+                <div
+                    key={project.id}
+                    className="border rounded-lg p-4 shadow-lg flex flex-col items-center cursor-pointer"
+                    onClick={() => handleRedirect(project.link)}
+                >
+                    <div className="mb-4 flex space-x-2">{project.icons}</div>
+                    <p className="text-lg font-bold">{project.title}</p>
+                    <p>{project.description}</p>
+                </div>
+            ))}
+        </div>
+    );
+};
 const MainContent: React.FC<{ section: SectionType }> = ({ section }) => {
     switch (section) {
         case 'projects':
@@ -352,6 +416,8 @@ const MainContent: React.FC<{ section: SectionType }> = ({ section }) => {
 };
 
 const ProjectSection = () => {
+
+
     const [section, setSection] = useState<SectionType>('about');
 
     return (

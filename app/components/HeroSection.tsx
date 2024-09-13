@@ -129,7 +129,7 @@ const HeroSection = () => {
                         projets sur lesquels je travaille.
                     </p>
 
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-4 mt-4">
                         <Button
                             onClick={saveFile}
                             label={
