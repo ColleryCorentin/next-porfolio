@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import {TypeAnimation} from "react-type-animation";
+import Section from "@/app/components/Section";
 
 interface FormData {
     firstName: string;
@@ -12,7 +12,12 @@ interface FormData {
     message: string;
 }
 
-const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+    theme: string;
+    setTheme: (theme: string) => void;
+}
+
+const ContactSection = ({  setTheme }: ContactSectionProps) => {
     const [formData, setFormData] = useState<FormData>({
         firstName: '',
         lastName: '',
@@ -35,9 +40,7 @@ const ContactSection: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         try {
-            console.log(formData);
             const response = await fetch('/api/send', {
                 method: 'POST',
                 headers: {
@@ -53,20 +56,17 @@ const ContactSection: React.FC = () => {
                 setIsSubmitted(false);
             }, 3000);
         } catch (error) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            setError(error.message);
+            setError((error as Error).message);
         }
     };
 
     return (
-        <section className="h-screen content-center relative">
-
+        <Section theme={"light"} setTheme={setTheme}>
             <h1 className="text-white text-4xl lg:text-6xl font-extrabold text-center mb-5">
-                        <span
-                            className="bg-clip-text bg-gradient-to-r via-soft-red to-soft-orange from-soft-purple text-transparent">
-                            Me contacter
-                        </span>{" "}
+                <span
+                    className="bg-clip-text dark:bg-gradient-to-r dark:via-soft-red dark:to-soft-orange dark:from-soft-purple dark:text-transparent text-black">
+                    Me contacter
+                </span>{" "}
             </h1>
 
             <form className="max-w-md mx-auto pt-5" onSubmit={handleSubmit}>
@@ -200,7 +200,7 @@ const ContactSection: React.FC = () => {
                     <div className="ms-3 text-sm font-normal">Message envoyé avec succès</div>
                 </div>
             )}
-        </section>
+        </Section>
     );
 };
 
